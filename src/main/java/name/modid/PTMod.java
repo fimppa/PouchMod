@@ -21,6 +21,8 @@ public class PTMod implements ModInitializer {
 
 		ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.INGREDIENTS)
 				.register((itemGroup) -> itemGroup.accept(ModItems.SUSPICIOUS_SUBSTANCE));
+
+
 	}
 
 	public static ResourceLocation id(String path) {

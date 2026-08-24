@@ -6,7 +6,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 
 public class ModItems {
-
+/*
+    If you want to add @override, do it inside new Item(...) ->
+*/
     public static final Item SUSPICIOUS_SUBSTANCE = ModItems.register(
             new Item(new Item.Properties()),
             "suspicious_substance"
