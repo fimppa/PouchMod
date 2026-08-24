@@ -6,6 +6,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 
 public class ModItems {
+
+    public static final Item SUSPICIOUS_SUBSTANCE = ModItems.register(
+            new Item(new Item.Properties()),
+            "suspicious_substance"
+    );
+
     public static Item register(Item item, String id) {
         // Create the identifier for the item.
         ResourceLocation itemID = ResourceLocation.fromNamespaceAndPath(PTMod.MOD_ID, id);
@@ -17,8 +23,7 @@ public class ModItems {
         return registeredItem;
     }
 
-    public static final Item SUSPICIOUS_SUBSTANCE = ModItems.register(
-            new Item(new Item.Properties()),
-            "suspicious_substance"
-    );
+    public static void registerModItems() {
+        PTMod.LOGGER.info("Registering Mod Items for " + PTMod.MOD_ID);
+    }
 }
