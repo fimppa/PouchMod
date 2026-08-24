@@ -2,6 +2,7 @@ package name.modid;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.resources.ResourceLocation;
 
 import net.minecraft.world.item.CreativeModeTab;
@@ -22,7 +23,7 @@ public class PTMod implements ModInitializer {
 		ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.INGREDIENTS)
 				.register((itemGroup) -> itemGroup.accept(ModItems.SUSPICIOUS_SUBSTANCE));
 
-
+		FuelRegistry.INSTANCE.add(ModItems.SUSPICIOUS_SUBSTANCE, 30 * 20);
 	}
 
 	public static ResourceLocation id(String path) {
