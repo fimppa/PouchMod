@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "ptmod:item/tobacco_seeds"
+    "layer0": "ptmod:item/tobacco_grown"
   }
 }

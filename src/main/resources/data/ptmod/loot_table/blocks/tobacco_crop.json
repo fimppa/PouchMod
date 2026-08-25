@@ -7,6 +7,38 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "name": "ptmod:tobacco_grown",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 2.0,
+              "add": false,
+              "conditions": [
+                {
+                  "condition": "minecraft:random_chance",
+                  "chance": 0.33
+                }
+              ]
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "ptmod:tobacco_crop",
+              "properties": {
+                "age": "7"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1.0,
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
           "name": "ptmod:tobacco_seeds",
           "functions": [
             {
@@ -15,7 +47,7 @@
               "formula": "minecraft:binomial_with_bonus_count",
               "parameters": {
                 "extra": 3,
-                "probability": 0.5714286
+                "probability": 0.55
               },
               "conditions": [
                 {

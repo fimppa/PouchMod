@@ -36,6 +36,11 @@ public class ModItems {
             "tobacco_seeds"
     );
 
+    public static final Item TOBACCO_GROWN = ModItems.register(
+            new Item(new Item.Properties()),
+            "tobacco_grown"
+    );
+
     // Register a new item method
     public static Item register(Item item, String id) {
         // Create the identifier for the item.
