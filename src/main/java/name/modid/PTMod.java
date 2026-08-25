@@ -1,6 +1,7 @@
 package name.modid;
 
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.resources.ResourceLocation;
@@ -20,10 +21,15 @@ public class PTMod implements ModInitializer {
 		LOGGER.info("Hello Fabric world!");
 		// Call for a function in ModItems.java as a test
 		ModItems.registerModItems();
+		ModBlocks.registerModBlocks();
 
-		// Initialize item
+		// Initialize item B13_TECHNO
 		ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.INGREDIENTS)
 				.register((itemGroup) -> itemGroup.accept(ModItems.B13_TECHNO));
+
+		// Initialize block FRAGILE_CAT
+		ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.BUILDING_BLOCKS)
+				.register((itemGroup) -> itemGroup.accept(ModBlocks.FRAGILE_CAT));
 
 		// Make the item burnable
 		FuelRegistry.INSTANCE.add(ModItems.B13_TECHNO, 30 * 20);
