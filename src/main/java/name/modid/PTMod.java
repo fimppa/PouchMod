@@ -18,12 +18,15 @@ public class PTMod implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		LOGGER.info("Hello Fabric world!");
+		// Call for a function in ModItems.java as a test
 		ModItems.registerModItems();
 
+		// Initialize item
 		ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.INGREDIENTS)
-				.register((itemGroup) -> itemGroup.accept(ModItems.SUSPICIOUS_SUBSTANCE));
+				.register((itemGroup) -> itemGroup.accept(ModItems.B13_TECHNO));
 
-		FuelRegistry.INSTANCE.add(ModItems.SUSPICIOUS_SUBSTANCE, 30 * 20);
+		// Make the item burnable
+		FuelRegistry.INSTANCE.add(ModItems.B13_TECHNO, 30 * 20);
 	}
 
 	public static ResourceLocation id(String path) {

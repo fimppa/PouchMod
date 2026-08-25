@@ -9,11 +9,15 @@ public class ModItems {
 /*
     If you want to add @override, do it inside new Item(...) ->
 */
-    public static final Item SUSPICIOUS_SUBSTANCE = ModItems.register(
+
+    // New item to register. This instance is suspicious_substance
+    // Read about item properties here :D :https://wiki.fabricmc.net/tutorial:items
+    public static final Item B13_TECHNO = ModItems.register(
             new Item(new Item.Properties()),
-            "suspicious_substance"
+            "b13_techno"
     );
 
+    // Register a new item method
     public static Item register(Item item, String id) {
         // Create the identifier for the item.
         ResourceLocation itemID = ResourceLocation.fromNamespaceAndPath(PTMod.MOD_ID, id);
