@@ -24,11 +24,11 @@ public class PTMod implements ModInitializer {
 		ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.INGREDIENTS)
 				.register((itemGroup) -> itemGroup.accept(ModItems.B13_TECHNO));
 
-		// Initialize item B13_TECHNO
+		// Initialize item TOBACCO_SEEDS
 		ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.NATURAL_BLOCKS)
 				.register((itemGroup) -> itemGroup.accept(ModItems.TOBACCO_SEEDS));
 
-		// Initialize snus
+		// Initialize NICOTINE_POUCH
 		ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FOOD_AND_DRINKS)
 				.register((itemGroup) -> itemGroup.accept(ModItems.NICOTINE_POUCH));
 

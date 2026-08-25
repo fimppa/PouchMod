@@ -15,9 +15,6 @@ import java.util.List;
 
 public class ModCrop extends CropBlock {
 
-    //public static final int MAX_AGE = 4;
-    //public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 4);
-
     public ModCrop(Properties properties) {
         super(properties);
     }
@@ -26,20 +23,4 @@ public class ModCrop extends CropBlock {
     protected ItemLike getBaseSeedId() {
         return ModItems.TOBACCO_SEEDS;
     }
-/*
-    @Override
-    public IntegerProperty getAgeProperty() {
-        return AGE;
-    }
-
-    @Override
-    public int getMaxAge() {
-        return MAX_AGE;
-    }
-
-    @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(CropBlock.AGE);
-    }
-    */
 }
