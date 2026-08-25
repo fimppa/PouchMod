@@ -1,5 +1,6 @@
 package name.modid;
 
+import name.modid.item.ModItemsLibrary;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
@@ -22,26 +23,30 @@ public class PTMod implements ModInitializer {
 
 		// Initialize item B13_TECHNO
 		ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.INGREDIENTS)
-				.register((itemGroup) -> itemGroup.accept(ModItems.B13_TECHNO));
+				.register((itemGroup) -> itemGroup.accept(ModItemsLibrary.B13_TECHNO));
 
 		// Initialize item TOBACCO_SEEDS
 		ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.NATURAL_BLOCKS)
-				.register((itemGroup) -> itemGroup.accept(ModItems.TOBACCO_SEEDS));
+				.register((itemGroup) -> itemGroup.accept(ModItemsLibrary.TOBACCO_SEEDS));
 
 		// Initialize item TOBACCO_GROWN
 		ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.NATURAL_BLOCKS)
-				.register((itemGroup) -> itemGroup.accept(ModItems.TOBACCO_GROWN));
+				.register((itemGroup) -> itemGroup.accept(ModItemsLibrary.TOBACCO_GROWN));
+
+		// Initialize item TOBACCO_GROWN
+		ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.NATURAL_BLOCKS)
+				.register((itemGroup) -> itemGroup.accept(ModItemsLibrary.TOBACCO_DRIED));
 
 		// Initialize NICOTINE_POUCH
 		ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FOOD_AND_DRINKS)
-				.register((itemGroup) -> itemGroup.accept(ModItems.NICOTINE_POUCH));
+				.register((itemGroup) -> itemGroup.accept(ModItemsLibrary.NICOTINE_POUCH));
 
 		// Initialize block FRAGILE_CAT
 		ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.BUILDING_BLOCKS)
 				.register((itemGroup) -> itemGroup.accept(ModBlocks.FRAGILE_CAT));
 
 		// Make the item burnable
-		FuelRegistry.INSTANCE.add(ModItems.B13_TECHNO, 30 * 20);
+		FuelRegistry.INSTANCE.add(ModItemsLibrary.B13_TECHNO, 30 * 20);
 	}
 
 	public static ResourceLocation id(String path) {

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "ingredient": {
+    "item": "ptmod:tobacco_grown"
+  },
+  "result": {
+    "id": "ptmod:tobacco_dried"
+  },
+  "experience": 0.7,
+  "cookingtime": 200
+}

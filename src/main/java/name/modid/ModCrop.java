@@ -1,5 +1,6 @@
 package name.modid;
 
+import name.modid.item.ModItemsLibrary;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -21,6 +22,6 @@ public class ModCrop extends CropBlock {
 
     @Override
     protected ItemLike getBaseSeedId() {
-        return ModItems.TOBACCO_SEEDS;
+        return ModItemsLibrary.TOBACCO_SEEDS;
     }
 }
