@@ -6,8 +6,10 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.PushReaction;
 
 public class ModBlocks {
 
@@ -17,6 +19,16 @@ public class ModBlocks {
             new Block(BlockBehaviour.Properties.of().destroyTime(0.1f).sound(SoundType.GLASS)),
             "fragile_cat",
             true
+    );
+
+    public static final Block TOBACCO_CROP = register(
+            new ModCrop(BlockBehaviour.Properties.of().noCollission()
+                    .randomTicks()
+                    .instabreak()
+                    .pushReaction(PushReaction.DESTROY)
+                    .sound(SoundType.CROP)),
+            "tobacco_crop",
+            false
     );
 
     public static Block register(Block block, String name, boolean shouldRegisterItem) {
