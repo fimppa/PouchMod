@@ -40,30 +40,44 @@ public class ModItemsLibrary {
             "cigarette"
     );
 
-    /*
 
-        Pouches 3, 6, 12, 18, 30, 90, 150
-
-    */
-
+    // Might need to move this whole shit to a SEPARATE item library... Insane
+    // These are our cleaning tools, our detergents and soaps. Clean up!
     private record Effect(
             Holder<MobEffect> effect,
             int duration,
-            int amplifier,
+            int tier,
             float chance
     ) {}
 
     private static Effect effect(
             Holder<MobEffect> effect,
             int duration,
-            int amplifier,
+            int tier,
             float chance
     ) {
-        return new Effect (effect, duration, amplifier, chance);
+        return new Effect (effect, duration, tier, chance);
     }
 
     private static FoodProperties.Builder basePouch() {
         return new FoodProperties.Builder().alwaysEdible().fast();
+    }
+
+    private static FoodProperties.Builder pouch(Effect... effects) {
+        FoodProperties.Builder builder = basePouch();
+
+        for (Effect effect : effects) {
+            builder.effect(
+                    new MobEffectInstance(
+                            effect.effect(),
+                            effect.duration(),
+                            effect.tier()
+                    ),
+                    effect.chance()
+            );
+        }
+
+        return builder;
     }
 
     // Let's start by settings base negative and positive effects. The other stuff can be implemented then
@@ -74,84 +88,114 @@ public class ModItemsLibrary {
             30 * 20, 35 * 20, 40 * 20, 45 * 20
     };
 
-    // Movement Speed I - 25%, Haste I - 15%, Jump Boost I, 1%
-    // Nausea II - 5%
-    public static final FoodProperties NIC_COMP_3 = basePouch()
-            .effect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, pouchDur[0], 0), 0.25f)
-            .effect(new MobEffectInstance(MobEffects.DIG_SPEED, pouchDur[0], 0), 0.15f)
-            .effect(new MobEffectInstance(MobEffects.JUMP, pouchDur[0], 0), 0.01f)
-            // Negative
-            .effect(new MobEffectInstance(MobEffects.CONFUSION, pouchDur[0] / 2, 1), 0.05f)
-            .build();
+    public static final int[] pouchDurNeg = {
+            6 * 20, 9 * 20, 11 * 20,
+            13 * 20, 15 * 20, 17 * 20, 19 * 20
+    };
 
-    // Movement Speed I - 30%, Haste I - 20%, Jump Boost I, 3%
-    // Nausea II - 10%, Poison I - 1%, Darkness I - 1%
-    public static final FoodProperties NIC_COMP_6 = basePouch()
-            .effect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, pouchDur[1], 0), 0.30f)
-            .effect(new MobEffectInstance(MobEffects.DIG_SPEED, pouchDur[1], 0), 0.20f)
-            .effect(new MobEffectInstance(MobEffects.JUMP, pouchDur[1], 0), 0.03f)
-            // Negative
-            .effect(new MobEffectInstance(MobEffects.CONFUSION, pouchDur[1] / 2, 1), 0.10f)
-            .effect(new MobEffectInstance(MobEffects.POISON, pouchDur[1] / 2, 0), 0.01f)
-            .effect(new MobEffectInstance(MobEffects.DARKNESS, pouchDur[1] / 2, 0), 0.01f)
+    public static final FoodProperties NIC_COMP_3 = pouch(
+            effect(MobEffects.MOVEMENT_SPEED,   pouchDur[0], 0, 0.25f),
+            effect(MobEffects.DIG_SPEED,        pouchDur[0], 0, 0.15f),
+            effect(MobEffects.JUMP,             pouchDur[0], 0, 0.01f),
 
-            .build();
+            // Negative
+            effect(MobEffects.CONFUSION,        pouchDurNeg[0], 0, 0.05f)
+    ).build();
+
+    public static final FoodProperties NIC_COMP_6 = pouch(
+            effect(MobEffects.MOVEMENT_SPEED, pouchDur[1], 0, 0.30f),
+            effect(MobEffects.DIG_SPEED,      pouchDur[1], 0, 0.20f),
+            effect(MobEffects.JUMP,           pouchDur[1], 0, 0.03f),
+
+            // Negative
+            effect(MobEffects.CONFUSION,      pouchDurNeg[1], 0, 0.10f),
+            effect(MobEffects.POISON,         pouchDurNeg[1], 0, 0.01f),
+            effect(MobEffects.DARKNESS,       pouchDurNeg[1], 0, 0.01f)
+    ).build();
 
     // Movement Speed I - 33%, Haste I - 25%, Jump Boost I - 5%, Resistance I - 1%
     // Nausea II - 15%, Poison I - 1%, Darkness I - 1%, Mining Fatigue I - 1%, Instant Damage I - 1%
-    public static final FoodProperties NIC_COMP_12 = basePouch()
-            .effect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, pouchDur[2], 0), 0.33f)
-            .effect(new MobEffectInstance(MobEffects.DIG_SPEED, pouchDur[2], 0), 0.25f)
-            .effect(new MobEffectInstance(MobEffects.JUMP, pouchDur[2], 0), 0.05f)
-            .effect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, pouchDur[2], 0), 0.01f)
-            // Negative
-            .effect(new MobEffectInstance(MobEffects.CONFUSION, pouchDur[2] / 2, 1), 0.15f)
-            .effect(new MobEffectInstance(MobEffects.POISON, pouchDur[2] / 2, 0), 0.01f)
-            .effect(new MobEffectInstance(MobEffects.DARKNESS, pouchDur[2] / 2, 0), 0.01f)
-            .effect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, pouchDur[2] / 2, 0), 0.01f)
-            .effect(new MobEffectInstance(MobEffects.HARM, 0, 0), 0.01f)
-            .build();
+    public static final FoodProperties NIC_COMP_12 = pouch(
+            effect(MobEffects.MOVEMENT_SPEED,       pouchDur[2], 0, 0.33f),
+            effect(MobEffects.DIG_SPEED,            pouchDur[2], 0, 0.25f),
+            effect(MobEffects.JUMP,                 pouchDur[2], 0, 0.05f),
+            effect(MobEffects.DAMAGE_RESISTANCE,    pouchDur[2], 0, 0.01f),
 
-    public static final FoodProperties NIC_COMP_18 = basePouch()
-            .effect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, pouchDur[3], 1), 1.0f)  // 100 % chance for movement speed II
-            .effect(new MobEffectInstance(MobEffects.DIG_SPEED, pouchDur[3], 0), 1.0f)       // 100 % chance for haste I
             // Negative
-            .effect(new MobEffectInstance(MobEffects.CONFUSION, 8 * 20, 1), 0.20f)       // 20 % chance for nausea II
-            .build();
+            effect(MobEffects.CONFUSION,        pouchDurNeg[2], 0, 0.15f),
+            effect(MobEffects.POISON,           pouchDurNeg[2], 0, 0.01f),
+            effect(MobEffects.DARKNESS,         pouchDurNeg[2], 0, 0.01f),
+            effect(MobEffects.DIG_SLOWDOWN,     pouchDurNeg[2], 0, 0.01f),
+            effect(MobEffects.HARM,             0, 0, 0.01f)
+    ).build();
 
-    public static final FoodProperties NIC_COMP_30 = basePouch()
-            .effect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, pouchDur[4], 1), 1.0f) // 100 % chance for movement speed II
-            .effect(new MobEffectInstance(MobEffects.DIG_SPEED, pouchDur[4], 1), 1.0f)      // 100 % chance for haste II
-            // Negative
-            .effect(new MobEffectInstance(MobEffects.CONFUSION, 10 * 20, 1), 0.1f)      // 10 % chance for Darkness
-            .effect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 35 * 20, 0), 0.1f)   // 10 % chance for Mining Fatigue I
-            .effect(new MobEffectInstance(MobEffects.CONFUSION, 9 * 20, 1), 0.3f)       // 30 % chance for nausea II
-            .build();
+    public static final FoodProperties NIC_COMP_18 = pouch(
+            effect(MobEffects.MOVEMENT_SPEED,       pouchDur[3], 1, 0.35f),
+            effect(MobEffects.DIG_SPEED,            pouchDur[3], 0, 0.30f),
+            effect(MobEffects.JUMP,                 pouchDur[3], 0, 0.10f),
+            effect(MobEffects.DAMAGE_RESISTANCE,    pouchDur[3], 0, 0.02f),
 
-    public static final FoodProperties NIC_COMP_90 = basePouch()
-            .effect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, pouchDur[5], 1), 1.0f)  // 100 % chance for movement speed II
-            .effect(new MobEffectInstance(MobEffects.DIG_SPEED, pouchDur[5], 1), 1.0f)      // 100 % chance for haste II
-            .effect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, pouchDur[5], 1), 0.33f)  // 33 % chance for strength II
             // Negative
-            .effect(new MobEffectInstance(MobEffects.CONFUSION, 10 * 20, 1), 0.1f)       // 10 % chance for Darkness
-            .effect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 35 * 20, 0), 0.1f)    // 10 % chance for Mining Fatigue I
-            .effect(new MobEffectInstance(MobEffects.WEAKNESS, 10 * 20, 0), 0.1f)        // 10 % chance for Weakness
-            .effect(new MobEffectInstance(MobEffects.CONFUSION, 10 * 20, 1), 0.5f)       // 50 % chance for nausea II
-            .build();
+            effect(MobEffects.CONFUSION,        pouchDurNeg[3], 0, 0.20f),
+            effect(MobEffects.POISON,           pouchDurNeg[3], 0, 0.02f),
+            effect(MobEffects.DARKNESS,         pouchDurNeg[3], 0, 0.05f),
+            effect(MobEffects.DIG_SLOWDOWN,     pouchDurNeg[3], 0, 0.05f),
+            effect(MobEffects.HARM,             0, 0, 0.02f),
+            effect(MobEffects.MOVEMENT_SLOWDOWN,     pouchDurNeg[3], 0, 0.01f),
+            effect(MobEffects.WEAKNESS,     pouchDurNeg[3], 0, 0.01f)
+    ).build();
 
-    public static final FoodProperties NIC_COMP_150 = basePouch()
-            .effect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, pouchDur[6], 1), 1.0f)  // 100 % chance for movement speed II
-            .effect(new MobEffectInstance(MobEffects.DIG_SPEED, pouchDur[6], 1), 1.0f)      // 100 % chance for haste II
-            .effect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, pouchDur[6], 1), 0.75f)   // 75 % chance for strength II
-            .effect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, pouchDur[6], 0), 0.25f)   // 25 % chance for Resistance I
+    public static final FoodProperties NIC_COMP_30 = pouch(
+            effect(MobEffects.MOVEMENT_SPEED,       pouchDur[4], 1, 0.40f),
+            effect(MobEffects.DIG_SPEED,            pouchDur[4], 1, 0.35f),
+            effect(MobEffects.JUMP,                 pouchDur[4], 0, 0.20f),
+            effect(MobEffects.DAMAGE_BOOST,         pouchDur[4], 0, 0.15f),
+            effect(MobEffects.DAMAGE_RESISTANCE,    pouchDur[4], 0, 0.03f),
+
             // Negative
-            .effect(new MobEffectInstance(MobEffects.CONFUSION, 10 * 20, 1), 0.5f)      // 50 % chance for nausea II
-            .effect(new MobEffectInstance(MobEffects.POISON, 5 * 20, 0), 0.20f)         // 20 % chance for poison I
-            .effect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 35 * 20, 0), 0.1f)   // 10 % chance for Mining Fatigue I
-            .effect(new MobEffectInstance(MobEffects.WEAKNESS, 10 * 20, 0), 0.1f)       // 10 % chance for Weakness
-            .effect(new MobEffectInstance(MobEffects.DARKNESS, 10 * 20, 0), 0.1f)       // 10 % chance for darkness
-            .effect(new MobEffectInstance(MobEffects.HARM, 20, 1), 0.05f)               // 5 % chance for instant damage
-            .build();
+            effect(MobEffects.CONFUSION,        pouchDurNeg[4], 0, 0.30f),
+            effect(MobEffects.POISON,           pouchDurNeg[4], 0, 0.05f),
+            effect(MobEffects.DARKNESS,         pouchDurNeg[4], 0, 0.10f),
+            effect(MobEffects.DIG_SLOWDOWN,     pouchDurNeg[4], 0, 0.10f),
+            effect(MobEffects.HARM,             0, 0, 0.03f),
+            effect(MobEffects.MOVEMENT_SLOWDOWN,     pouchDurNeg[4], 0, 0.05f),
+            effect(MobEffects.WEAKNESS,     pouchDurNeg[4], 0, 0.05f)
+    ).build();
+
+    public static final FoodProperties NIC_COMP_90 = pouch(
+            effect(MobEffects.MOVEMENT_SPEED,       pouchDur[5], 1, 0.44f),
+            effect(MobEffects.DIG_SPEED,            pouchDur[5], 1, 0.40f),
+            effect(MobEffects.JUMP,                 pouchDur[5], 1, 0.25f),
+            effect(MobEffects.DAMAGE_BOOST,         pouchDur[5], 1, 0.20f),
+            effect(MobEffects.DAMAGE_RESISTANCE,    pouchDur[5], 0, 0.04f),
+
+            // Negative
+            effect(MobEffects.CONFUSION,        pouchDurNeg[5], 0, 0.50f),
+            effect(MobEffects.POISON,           pouchDurNeg[5], 1, 0.10f),
+            effect(MobEffects.DARKNESS,         pouchDurNeg[5], 0, 0.10f),
+            effect(MobEffects.DIG_SLOWDOWN,     pouchDurNeg[5], 1, 0.15f),
+            effect(MobEffects.HARM,             0, 0, 0.04f),
+            effect(MobEffects.MOVEMENT_SLOWDOWN,     pouchDurNeg[5], 0, 0.10f),
+            effect(MobEffects.WEAKNESS,     pouchDurNeg[5], 0, 0.10f)
+    ).build();
+
+    public static final FoodProperties NIC_COMP_150 = pouch(
+            effect(MobEffects.MOVEMENT_SPEED,       pouchDur[6], 1, 0.50f),
+            effect(MobEffects.DIG_SPEED,            pouchDur[6], 1, 0.40f),
+            effect(MobEffects.JUMP,                 pouchDur[6], 1, 0.33f),
+            effect(MobEffects.DAMAGE_BOOST,         pouchDur[6], 1, 0.25f),
+            effect(MobEffects.DAMAGE_RESISTANCE,    pouchDur[6], 1, 0.05f),
+
+            // Negative
+            effect(MobEffects.CONFUSION,        pouchDurNeg[6], 1, 0.50f),
+            effect(MobEffects.POISON,           pouchDurNeg[6], 1, 0.20f),
+            effect(MobEffects.DARKNESS,         pouchDurNeg[6], 1, 0.20f),
+            effect(MobEffects.DIG_SLOWDOWN,     pouchDurNeg[6], 1, 0.25f),
+            effect(MobEffects.HARM,             0, 0, 0.05f),
+            effect(MobEffects.MOVEMENT_SLOWDOWN,     pouchDurNeg[6], 1, 0.20f),
+            effect(MobEffects.WEAKNESS,     pouchDurNeg[6], 1, 0.20f),
+            effect(MobEffects.WITHER,     pouchDurNeg[6], 1, 0.01f)
+    ).build();
 
     public static final Item POUCH_3 = ModItems.register(
             new Item(new Item.Properties().food(NIC_COMP_3)), "pouch_0"
