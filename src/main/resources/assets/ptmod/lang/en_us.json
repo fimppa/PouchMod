@@ -1,9 +1,15 @@
 {
   "item.ptmod.b13_techno": "B13 Techno Fork & Shock iskusuihke 150ml",
   "block.ptmod.fragile_cat": "Fragile Cat Cube",
-  "item.ptmod.nicotine_pouch": "Nicotine Pouch",
   "item.ptmod.tobacco_seeds": "Tobacco Seeds",
   "item.ptmod.tobacco_grown": "Tobacco",
   "item.ptmod.tobacco_dried": "Tobacco (Dried)",
-  "item.ptmod.cigarette": "Cigarette"
+  "item.ptmod.cigarette": "Cigarette",
+  "item.ptmod.pouch_0": "Nicotine Pouch (3mg)",
+  "item.ptmod.pouch_1": "Nicotine Pouch (6mg)",
+  "item.ptmod.pouch_2": "Nicotine Pouch (12mg)",
+  "item.ptmod.pouch_3": "Nicotine Pouch (18mg)",
+  "item.ptmod.pouch_4": "Nicotine Pouch (30mg)",
+  "item.ptmod.pouch_5": "Nicotine Pouch (90mg)",
+  "item.ptmod.pouch_6": "Nicotine Pouch (150mg)"
 }

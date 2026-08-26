@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "minecraft:string"
+    },
+    {
+      "item": "ptmod:tobacco_dried"
+    },
+    {
+      "item": "ptmod:tobacco_dried"
+    },
+    {
+      "item": "ptmod:tobacco_dried"
+    },
+    {
+      "item": "ptmod:tobacco_dried"
+    },
+    {
+      "item": "ptmod:tobacco_dried"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "ptmod:pouch_4"
+  }
+}

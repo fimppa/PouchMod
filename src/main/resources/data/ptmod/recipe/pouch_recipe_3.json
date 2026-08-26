@@ -8,11 +8,11 @@
       "item": "minecraft:string"
     },
     {
-      "item": "ptmod:tobacco_grown"
+      "item": "ptmod:tobacco_dried"
     }
   ],
   "result": {
     "count": 1,
-    "id": "ptmod:nicotine_pouch"
+    "id": "ptmod:pouch_0"
   }
 }

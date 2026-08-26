@@ -37,9 +37,17 @@ public class PTMod implements ModInitializer {
 		ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.NATURAL_BLOCKS)
 				.register((itemGroup) -> itemGroup.accept(ModItemsLibrary.TOBACCO_DRIED));
 
-		// Initialize NICOTINE_POUCH
+		// Initialize Pouches
 		ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FOOD_AND_DRINKS)
-				.register((itemGroup) -> itemGroup.accept(ModItemsLibrary.NICOTINE_POUCH));
+				.register((itemGroup) -> {
+					itemGroup.accept(ModItemsLibrary.POUCH_3);
+					itemGroup.accept(ModItemsLibrary.POUCH_6);
+					itemGroup.accept(ModItemsLibrary.POUCH_12);
+					itemGroup.accept(ModItemsLibrary.POUCH_18);
+					itemGroup.accept(ModItemsLibrary.POUCH_30);
+					itemGroup.accept(ModItemsLibrary.POUCH_90);
+					itemGroup.accept(ModItemsLibrary.POUCH_150);
+				});
 
 		// Initialize block FRAGILE_CAT
 		ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.BUILDING_BLOCKS)
