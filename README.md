@@ -7,6 +7,7 @@ These pouches, while at the beginning may give the player positive effects, it's
 Java 21.0.5 (OpenJDK, Temurin)  
 Fabric / Fabric API (Mojang mappings)  
 Gradle  
+Minecraft 1.21.1
 
 ## Notice
 This project is created strictly for gameplay, educational, and entertainment purposes within Minecraft.
