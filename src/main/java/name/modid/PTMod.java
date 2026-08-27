@@ -44,10 +44,6 @@ public class PTMod implements ModInitializer {
 					itemGroup.accept(ModItemsLibrary.POUCH_90);
 					itemGroup.accept(ModItemsLibrary.POUCH_150);
 				});
-
-		// Initialize block FRAGILE_CAT
-		ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.BUILDING_BLOCKS)
-				.register((itemGroup) -> itemGroup.accept(ModBlocks.FRAGILE_CAT));
 	}
 
 	public static ResourceLocation id(String path) {
