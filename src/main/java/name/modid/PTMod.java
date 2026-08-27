@@ -21,10 +21,6 @@ public class PTMod implements ModInitializer {
 		ModBlocks.registerModBlocks();
 		ModItems.registerModItems();
 
-		// Initialize item B13_TECHNO
-		ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.INGREDIENTS)
-				.register((itemGroup) -> itemGroup.accept(ModItemsLibrary.B13_TECHNO));
-
 		// Initialize item TOBACCO_SEEDS
 		ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.NATURAL_BLOCKS)
 				.register((itemGroup) -> itemGroup.accept(ModItemsLibrary.TOBACCO_SEEDS));
@@ -52,9 +48,6 @@ public class PTMod implements ModInitializer {
 		// Initialize block FRAGILE_CAT
 		ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.BUILDING_BLOCKS)
 				.register((itemGroup) -> itemGroup.accept(ModBlocks.FRAGILE_CAT));
-
-		// Make the item burnable
-		FuelRegistry.INSTANCE.add(ModItemsLibrary.B13_TECHNO, 30 * 20);
 	}
 
 	public static ResourceLocation id(String path) {

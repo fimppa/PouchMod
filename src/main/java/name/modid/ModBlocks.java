@@ -13,16 +13,7 @@ import net.minecraft.world.level.material.PushReaction;
 
 public class ModBlocks {
 
-    // Let's be brave and try to make a block with a custom name, destroy time of 0.1f and the sound for
-    // glass with a custom texture
-
-    // This is just a test, remove once... Done
-    public static final Block FRAGILE_CAT = register(
-            new Block(BlockBehaviour.Properties.of().destroyTime(0.1f).sound(SoundType.GLASS)),
-            "fragile_cat",
-            true
-    );
-
+    // Tobacco crop
     public static final Block TOBACCO_CROP = register(
             new ModCrop(BlockBehaviour.Properties.of().noCollission()
                     .randomTicks()

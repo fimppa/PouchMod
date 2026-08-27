@@ -12,14 +12,6 @@ import net.minecraft.world.item.ItemNameBlockItem;
 
 public class ModItemsLibrary {
 
-    // Library for all the items to keep clean.
-
-    public static final Item B13_TECHNO = ModItems.register(
-            new Item(new Item.Properties()),
-            "b13_techno"
-    );
-
-
     public static final Item TOBACCO_SEEDS = ModItems.register(
             new ItemNameBlockItem(ModBlocks.TOBACCO_CROP, new Item.Properties()),
             "tobacco_seeds"
@@ -33,11 +25,6 @@ public class ModItemsLibrary {
     public static final Item TOBACCO_DRIED = ModItems.register(
             new Item(new Item.Properties()),
             "tobacco_dried"
-    );
-
-    public static final Item CIGARETTE = ModItems.register(
-            new Item(new Item.Properties()),
-            "cigarette"
     );
 
 
